@@ -12,7 +12,7 @@
     <input type="file" id="fileInput">
     <button id="submitCodes">Apply</button>
 
-
+    <iframe id="promoIframe" style="display:none;"></iframe>
     <script>
         $(document).ready(function () {
             $('#submitCodes').on('click', function () {
@@ -26,19 +26,49 @@
                 const reader = new FileReader();
                 reader.onload = function (event) {
                     const content = event.target.result;
-                    const codes = content.split('\n');
+                    const codes = content.split('\n').map(code => code.trim()).filter(code => code);
 
-                    codes.forEach(function (code) {
-                        code = code.trim();
-                        if (code) {
-                            console.log(code);
-                        }
-                    });
+                    submitCodes(codes);
                 };
 
                 reader.readAsText(file);
             });
         });
+
+        function submitCodes(codes) {
+            if (codes.length === 0) {
+                alert('All codes have been submitted.');
+                return;
+            }
+
+            const code = codes.shift();
+            const iframe = $('#promoIframe');
+            const warframePromoCodeApplyPage = 'https://www.warframe.com/promocode';
+
+            iframe.off('load').on('load', function () {
+                const iframeDoc = iframe[0].contentDocument || iframe[0].contentWindow.document;
+
+                const promoCodeInput = iframeDoc.getElementById('promocode_input');
+                const submitButton = iframeDoc.getElementById('btnSubmit');
+
+                if (promoCodeInput && submitButton) {
+                    promoCodeInput.value = code;
+                    submitButton.click();
+
+                    setTimeout(function () {
+                        iframe.off('load').on('load', function () {
+                            submitCodes(codes);
+                        });
+
+                        iframe[0].contentWindow.location.reload();
+                    }, 3000);
+                } else {
+                    alert('Failed to find input or button elements. Please check the page structure.');
+                }
+            });
+
+            iframe.attr('src', warframePromoCodeApplyPage);
+        }
 
 
 
