@@ -9,11 +9,38 @@
 </head>
 
 <body>
-    <input type="file" id="code_file">
-    <button id="apply_button">Apply</button>
+    <input type="file" id="fileInput">
+    <button id="submitCodes">Apply</button>
 
 
     <script>
+        $(document).ready(function () {
+            $('#submitCodes').on('click', function () {
+                const fileInput = document.getElementById('fileInput');
+                const file = fileInput.files[0];
+
+                if (!file) {
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const content = event.target.result;
+                    const codes = content.split('\n');
+
+                    codes.forEach(function (code) {
+                        code = code.trim();
+                        if (code) {
+                            console.log(code);
+                        }
+                    });
+                };
+
+                reader.readAsText(file);
+            });
+        });
+
+
 
     </script>
 </body>
