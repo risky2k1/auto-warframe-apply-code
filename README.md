@@ -29,3 +29,5 @@
 
 ## Sử dụng
 - Truy cập trang đích [Warframe promocode](https://www.warframe.com/promocode) và script sẽ tự động chạy
+# Rủi ro
+- Bạn sẽ bị chặn IP nếu dùng xong script này, như trường hợp của mình :disappointed_relieved:
