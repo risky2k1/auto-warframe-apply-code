@@ -13,7 +13,7 @@
     'use strict';
 
     //You can go to Google or any source that contain Promo codes to parse here
-    var codes = [
+    const codes = [
         'Codoma', 'WealWest', 'ThePanda', 'xBocchanVTx', 'PyrrhicSerenity', 'Akari', 'Carchara', 'Light_Micke', 'Nononom12',
         'Tortoise', 'MjikThize', 'Ozku', 'Twila', 'BlueberryCat', 'Destrohido', 'Im7heClown', 'CanOfCraigf', 'Np161', '6ixGatsu',
         'LadyNovita', 'FerreusDemon', 'ItsJustToe', 'Buff00n', 'SEARYN', 'Spandy', 'Scallion', 'MrRoadBlock', 'InfernoTheFirelord',
