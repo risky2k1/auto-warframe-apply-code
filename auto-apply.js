@@ -42,7 +42,7 @@
         'AnnoyingKillah', 'AnjetCat', 'AngryUnicorn', 'Amprov', 'AlexanderDario', 'AlainLove', 'AGayGuyPlays', 'AeonKnight86',
         'AdmiralBahroo'
     ];
-    var currentIndex = localStorage.getItem('promoCodeIndex');
+    let currentIndex = localStorage.getItem('promoCodeIndex');
     if (currentIndex === null) {
         currentIndex = 0;
     } else {
@@ -55,11 +55,11 @@
             return;
         }
 
-        var code = codes[currentIndex];
+        let code = codes[currentIndex];
         console.log('Submitting promo code:', code);
 
-        var promoInput = document.getElementById('promocode_input');
-        var submitButton = document.getElementById('btnSubmit');
+        const promoInput = document.getElementById('promocode_input');
+        const submitButton = document.getElementById('btnSubmit');
 
         if (promoInput && submitButton) {
             promoInput.value = code;
